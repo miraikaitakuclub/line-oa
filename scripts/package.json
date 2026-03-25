@@ -1,0 +1,12 @@
+{
+  "name": "line-oa-scripts",
+  "private": true,
+  "scripts": {
+    "setup-rich-menu": "ts-node scripts/setup-rich-menu.ts"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.0",
+    "@types/node": "^20.12.0"
+  }
+}
