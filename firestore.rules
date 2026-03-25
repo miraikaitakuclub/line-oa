@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /members/{memberId} {
+      // Users can only read their own document
+      allow read: if request.auth != null && request.auth.uid == memberId;
+
+      // Users can only create their own document with required fields
+      allow create: if request.auth != null
+                    && request.auth.uid == memberId
+                    && request.resource.data.lineUserId == memberId
+                    && request.resource.data.status == 'active'
+                    && request.resource.data.keys().hasAll([
+                         'lineUserId', 'displayName', 'schoolName',
+                         'year', 'faculty', 'department', 'seminars',
+                         'joinedAt', 'updatedAt', 'status'
+                       ]);
+
+      // Users can update their own document but cannot change lineUserId or joinedAt
+      allow update: if request.auth != null
+                    && request.auth.uid == memberId
+                    && request.resource.data.lineUserId == resource.data.lineUserId
+                    && request.resource.data.joinedAt == resource.data.joinedAt;
+
+      // No direct deletion (use status: 'left' instead)
+      allow delete: if false;
+    }
+
+    // Deny all other access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
