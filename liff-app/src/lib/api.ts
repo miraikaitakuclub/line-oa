@@ -7,8 +7,7 @@ interface TokenResponse {
 export async function exchangeToken(
   lineAccessToken: string
 ): Promise<TokenResponse> {
-  const projectId = import.meta.env.VITE_FIREBASE_PROJECT_ID;
-  const url = `https://createcustomtoken-${projectId}.cloudfunctions.net/createCustomToken`;
+  const url = import.meta.env.VITE_CREATE_TOKEN_URL;
 
   const res = await fetch(url, {
     method: "POST",
