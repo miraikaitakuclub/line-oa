@@ -18,7 +18,7 @@ export async function appendRow(
   const sheets = getSheetsClient();
   await sheets.spreadsheets.values.append({
     spreadsheetId,
-    range: "Sheet1!A:J",
+    range: "Sheet1!A:K",
     valueInputOption: "USER_ENTERED",
     requestBody: { values: [values] },
   });
@@ -51,7 +51,7 @@ export async function updateRow(
   const sheets = getSheetsClient();
   await sheets.spreadsheets.values.update({
     spreadsheetId,
-    range: `Sheet1!A${rowIndex}:J${rowIndex}`,
+    range: `Sheet1!A${rowIndex}:K${rowIndex}`,
     valueInputOption: "USER_ENTERED",
     requestBody: { values: [values] },
   });

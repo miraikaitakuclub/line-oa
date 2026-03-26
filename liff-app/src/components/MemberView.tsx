@@ -12,6 +12,7 @@ interface Props {
 
 export default function MemberView({ member, lineUserId }: Props) {
   const [editing, setEditing] = useState(false);
+  const [name, setName] = useState(member.name);
   const [schoolName, setSchoolName] = useState(member.schoolName);
   const [year, setYear] = useState(member.year);
   const [faculty, setFaculty] = useState(member.faculty);
@@ -25,6 +26,7 @@ export default function MemberView({ member, lineUserId }: Props) {
     setSubmitting(true);
     try {
       await updateDoc(doc(db, "members", lineUserId), {
+        name,
         schoolName,
         year,
         faculty,
@@ -86,6 +88,7 @@ export default function MemberView({ member, lineUserId }: Props) {
           </h1>
           <div className="rounded-xl bg-white p-6 shadow-lg">
             <div className="space-y-3">
+              <InfoRow label="氏名" value={member.name} />
               <InfoRow label="学校名" value={member.schoolName} />
               <InfoRow label="学年" value={member.year} />
               <InfoRow label="学部" value={member.faculty} />
@@ -139,6 +142,18 @@ export default function MemberView({ member, lineUserId }: Props) {
           情報を編集
         </h1>
         <form onSubmit={handleUpdate} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              氏名
+            </label>
+            <input
+              type="text"
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="mt-1 w-full rounded-lg border border-gray-300 p-3 focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500"
+            />
+          </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
               学校名

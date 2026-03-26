@@ -7,6 +7,7 @@ function memberToRow(data: FirebaseFirestore.DocumentData): string[] {
   return [
     data.lineUserId || "",
     data.displayName || "",
+    data.name || "",
     data.schoolName || "",
     data.year || "",
     data.faculty || "",

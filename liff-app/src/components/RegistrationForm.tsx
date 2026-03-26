@@ -10,6 +10,7 @@ interface Props {
 }
 
 export default function RegistrationForm({ lineUserId, displayName }: Props) {
+  const [name, setName] = useState("");
   const [schoolName, setSchoolName] = useState("");
   const [year, setYear] = useState("");
   const [faculty, setFaculty] = useState("");
@@ -20,13 +21,14 @@ export default function RegistrationForm({ lineUserId, displayName }: Props) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!schoolName || !year || !faculty || !department) return;
+    if (!name || !schoolName || !year || !faculty || !department) return;
 
     setSubmitting(true);
     try {
       await setDoc(doc(db, "members", lineUserId), {
         lineUserId,
         displayName,
+        name,
         schoolName,
         year,
         faculty,
@@ -74,6 +76,20 @@ export default function RegistrationForm({ lineUserId, displayName }: Props) {
           入部申請
         </h1>
         <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              氏名
+            </label>
+            <input
+              type="text"
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="例: 山田太郎"
+              className="mt-1 w-full rounded-lg border border-gray-300 p-3 focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500"
+            />
+          </div>
+
           <div>
             <label className="block text-sm font-medium text-gray-700">
               学校名

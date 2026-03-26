@@ -12,7 +12,7 @@ service cloud.firestore {
                     && request.resource.data.lineUserId == memberId
                     && request.resource.data.status == 'active'
                     && request.resource.data.keys().hasAll([
-                         'lineUserId', 'displayName', 'schoolName',
+                         'lineUserId', 'displayName', 'name', 'schoolName',
                          'year', 'faculty', 'department', 'seminars',
                          'joinedAt', 'updatedAt', 'status'
                        ]);
