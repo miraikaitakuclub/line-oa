@@ -58,7 +58,7 @@ async function createRichMenu(): Promise<string> {
     throw new Error(`Failed to create rich menu: ${error}`);
   }
 
-  const data = await res.json();
+  const data = (await res.json()) as { richMenuId: string };
   console.log("Rich menu created:", data.richMenuId);
   return data.richMenuId;
 }
