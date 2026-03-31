@@ -6,7 +6,6 @@ export const SEMINARS = [
   "法務ゼミ",
   "税務・会計ゼミ",
   "北大心理ゼミ（学生ゼミ）",
-  "基礎ゼミ（学生ゼミ）",
   "長橋PJ",
   "国際交流PJ HMcC",
   "シェアハウスPJ",
@@ -14,10 +13,11 @@ export const SEMINARS = [
   "フードPJ（農業PJ含む）",
   "Beer PJ",
   "レディ魚ー",
-  "Hult Prize",
   "スポーツPJ",
   "道東PJ",
   "YOSAKOI PJ",
   "temaneki PJ",
   "囚人作業会PJ",
+  "パラレルトラベルPJ",
+  "未来の大人PJ"
 ] as const;
